@@ -15,15 +15,13 @@ namespace Bilans
         }
         public void Run()
         {
-            double kwota;
             while (true)
             {
                 string date = DateTime.Now.GetDateTimeFormats('d')[0];
-                double suma = Oblicz.PobieranieSumy();
-                Console.WriteLine("Aktulanie mamy " + suma + " pieniążków.\nWprowadź wydatek lub przychód:");
+                Console.WriteLine("Aktulanie mamy " + Oblicz.PobieranieSumy() + " pieniążków.\nWprowadź wydatek lub przychód:");
                 ConsoleKeyInfo akcja = Console.ReadKey();
-                kwota = Oblicz.WprowadzanieLiczby(akcja);
-                suma = Oblicz.ObliczanieSumy(kwota, suma);
+                double kwota = Oblicz.WprowadzanieLiczby(akcja);
+                double suma = Oblicz.ObliczanieSumy(kwota, Oblicz.PobieranieSumy());
                 Console.WriteLine("Co to za wydatek/przychód? (H - halp!)");
                 string rodzaj = Oblicz.Rodzaj(Console.ReadKey());
                 Console.WriteLine("\n" + kwota + "PLN poszło na " + rodzaj + ".");
